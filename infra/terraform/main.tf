@@ -30,6 +30,19 @@ resource "aws_cognito_user_pool" "user_pool" {
       max_length = 256
     }
   }
+
+  schema {
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    name                     = "cpf"
+    required                 = true
+
+    string_attribute_constraints {
+      min_length = 11
+      max_length = 11
+    }
+  }
 }
 
 resource "aws_cognito_user_pool_client" "client" {
