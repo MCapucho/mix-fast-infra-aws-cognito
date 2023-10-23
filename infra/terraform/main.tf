@@ -1,5 +1,5 @@
 resource "aws_cognito_user_pool" "user_pool" {
-  name = "${var.name}-user-pool"
+  name = "${var.name}_user_pool"
 
   username_attributes = ["email"]
   auto_verified_attributes = ["email"]
@@ -30,10 +30,23 @@ resource "aws_cognito_user_pool" "user_pool" {
       max_length = 256
     }
   }
+
+  schema {
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    name                     = "cpf"
+    required                 = true
+
+    string_attribute_constraints {
+      min_length = 11
+      max_length = 11
+    }
+  }
 }
 
 resource "aws_cognito_user_pool_client" "client" {
-  name = "${var.name}-cognito-client"
+  name = "${var.name}_cognito_client"
 
   user_pool_id = aws_cognito_user_pool.user_pool.id
   generate_secret = false
@@ -50,6 +63,6 @@ resource "aws_cognito_user_pool_client" "client" {
 }
 
 resource "aws_cognito_user_pool_domain" "cognito-domain" {
-  domain       = var.name
+  domain       = "${var.name}"
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
