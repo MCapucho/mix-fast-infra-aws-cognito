@@ -36,8 +36,7 @@ resource "aws_cognito_user_pool" "user_pool" {
     developer_only_attribute = false
     mutable                  = true
     name                     = "cpf"
-    required                 = true
-
+    required                 = false
     string_attribute_constraints {
       min_length = 11
       max_length = 11
