@@ -1,4 +1,4 @@
-resource "aws_cognito_user_pool" "user_pool" {
+resource "aws_cognito_user_pool" "mixfast_cognito_user_pool" {
   name = "${var.name}_user_pool"
 
   username_attributes = ["email"]
@@ -42,26 +42,30 @@ resource "aws_cognito_user_pool" "user_pool" {
       max_length = 11
     }
   }
+
+  tags = var.tags
 }
 
-resource "aws_cognito_user_pool_client" "client" {
+resource "aws_cognito_user_pool_client" "mixfast_cognito_user_pool_client" {
   name = "${var.name}_cognito_client"
 
-  user_pool_id = aws_cognito_user_pool.user_pool.id
-  generate_secret = false
-  refresh_token_validity = 90
+  user_pool_id                  = aws_cognito_user_pool.mixfast_cognito_user_pool.id
+  generate_secret               = true
+  refresh_token_validity        = 90
   prevent_user_existence_errors = "ENABLED"
+
+  allowed_oauth_flows_user_pool_client = true
+  allowed_oauth_flows                  = ["client_credentials"]
+  allowed_oauth_scopes                 = ["mixfast/cognito"]
+  supported_identity_providers         = ["COGNITO"]
+
   explicit_auth_flows = [
     "ALLOW_REFRESH_TOKEN_AUTH",
-    "ALLOW_USER_PASSWORD_AUTH",
-    "ALLOW_ADMIN_USER_PASSWORD_AUTH",
-    "ALLOW_CUSTOM_AUTH",
-    "ALLOW_USER_SRP_AUTH"
+    "ALLOW_CUSTOM_AUTH"
   ]
-
 }
 
-resource "aws_cognito_user_pool_domain" "cognito-domain" {
-  domain       = "${var.name}"
-  user_pool_id = aws_cognito_user_pool.user_pool.id
+resource "aws_cognito_user_pool_domain" "mixfast_cognito_user_pool_domain-domain" {
+  domain       = var.name
+  user_pool_id = aws_cognito_user_pool.mixfast_cognito_user_pool.id
 }
