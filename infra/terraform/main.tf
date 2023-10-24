@@ -58,6 +58,7 @@ resource "aws_cognito_user_pool_client" "mixfast_cognito_user_pool_client" {
   allowed_oauth_flows                  = ["code"]
   allowed_oauth_scopes                 = ["openid"]
   supported_identity_providers         = ["COGNITO"]
+  callback_urls                        = ["https://example.com"]
 
   explicit_auth_flows = [
     "ALLOW_REFRESH_TOKEN_AUTH",
