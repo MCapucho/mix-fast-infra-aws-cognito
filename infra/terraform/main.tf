@@ -55,14 +55,16 @@ resource "aws_cognito_user_pool_client" "mixfast_cognito_user_pool_client" {
   prevent_user_existence_errors = "ENABLED"
 
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows                  = ["code"]
-  allowed_oauth_scopes                 = ["openid"]
+  allowed_oauth_flows                  = ["code", "implicit"]
+  allowed_oauth_scopes                 = ["email", "openid"]
   supported_identity_providers         = ["COGNITO"]
   callback_urls                        = ["https://example.com"]
 
   explicit_auth_flows = [
     "ALLOW_REFRESH_TOKEN_AUTH",
-    "ALLOW_CUSTOM_AUTH"
+    "ALLOW_CUSTOM_AUTH",
+    "ADMIN_NO_SRP_AUTH",
+    "ALLOW_USER_PASSWORD_AUTH"
   ]
 }
 
