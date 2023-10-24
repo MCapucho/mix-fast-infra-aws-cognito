@@ -63,8 +63,8 @@ resource "aws_cognito_user_pool_client" "mixfast_cognito_user_pool_client" {
   explicit_auth_flows = [
     "ALLOW_REFRESH_TOKEN_AUTH",
     "ALLOW_CUSTOM_AUTH",
-    "ADMIN_NO_SRP_AUTH",
-    "ALLOW_USER_PASSWORD_AUTH"
+    "ALLOW_USER_PASSWORD_AUTH",
+    "ALLOW_USER_SRP_AUTH"
   ]
 }
 
