@@ -55,7 +55,7 @@ resource "aws_cognito_user_pool_client" "mixfast_cognito_user_pool_client" {
   prevent_user_existence_errors = "ENABLED"
 
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows                  = ["client_credentials"]
+  allowed_oauth_flows                  = ["code"]
   allowed_oauth_scopes                 = ["openid"]
   supported_identity_providers         = ["COGNITO"]
 
