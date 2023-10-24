@@ -56,7 +56,7 @@ resource "aws_cognito_user_pool_client" "mixfast_cognito_user_pool_client" {
 
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["client_credentials"]
-  allowed_oauth_scopes                 = ["mixfast/cognito"]
+  allowed_oauth_scopes                 = ["openid"]
   supported_identity_providers         = ["COGNITO"]
 
   explicit_auth_flows = [
