@@ -50,12 +50,12 @@ resource "aws_cognito_user_pool_client" "mixfast_cognito_user_pool_client" {
   name = "${var.name}_cognito_client"
 
   user_pool_id                  = aws_cognito_user_pool.mixfast_cognito_user_pool.id
-  generate_secret               = true
+  generate_secret               = false
   refresh_token_validity        = 90
   prevent_user_existence_errors = "ENABLED"
 
   allowed_oauth_flows_user_pool_client = true
-  allowed_oauth_flows                  = ["code", "implicit"]
+  allowed_oauth_flows                  = ["implicit"]
   allowed_oauth_scopes                 = ["email", "openid"]
   supported_identity_providers         = ["COGNITO"]
   callback_urls                        = ["https://example.com"]
