@@ -1,8 +1,8 @@
 resource "aws_cognito_user_pool" "mixfast_cognito_user_pool" {
   name = "${var.name}_user_pool"
 
-  username_attributes = ["email"]
-  auto_verified_attributes = ["email"]
+  username_attributes = ["email", "preferred_username"]
+  auto_verified_attributes = ["email", "preferred_username"]
 
   password_policy {
     minimum_length    = 8
@@ -41,6 +41,10 @@ resource "aws_cognito_user_pool" "mixfast_cognito_user_pool" {
       min_length = 11
       max_length = 11
     }
+  }
+
+  lambda_config {
+    define_auth_challenge = "arn:aws:lambda:us-east-1:022874923015:function:mixfast_authorizer_cognito_triggers"
   }
 
   tags = var.tags
