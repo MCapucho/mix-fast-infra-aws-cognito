@@ -1,8 +1,10 @@
 resource "aws_cognito_user_pool" "mixfast_cognito_user_pool" {
   name = "${var.name}_user_pool"
+  id   = "${var.name}_id"
 
-  username_attributes = ["email"]
+  alias_attributes = ["email", "preferred_username"]
   auto_verified_attributes = ["email"]
+  a
 
   password_policy {
     minimum_length    = 8
