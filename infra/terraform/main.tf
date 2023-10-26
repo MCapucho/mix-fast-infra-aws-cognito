@@ -22,19 +22,6 @@ resource "aws_cognito_user_pool" "mixfast_cognito_user_pool" {
     attribute_data_type      = "String"
     developer_only_attribute = false
     mutable                  = true
-    name                     = "preferred_username"
-    required                 = true
-
-    string_attribute_constraints {
-      min_length = 1
-      max_length = 256
-    }
-  }
-
-  schema {
-    attribute_data_type      = "String"
-    developer_only_attribute = false
-    mutable                  = true
     name                     = "email"
     required                 = true
 
