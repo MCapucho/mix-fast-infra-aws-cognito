@@ -44,7 +44,7 @@ resource "aws_cognito_user_pool" "mixfast_cognito_user_pool" {
   }
 
   lambda_config {
-    define_auth_challenge = "arn:aws:lambda:us-east-1:022874923015:function:mixfast_authorizer_cognito_triggers"
+    define_auth_challenge = "arn:aws:lambda:us-east-1:211125470560:function:mixfast_authorizer_cognito_triggers"
   }
 
   tags = var.tags
